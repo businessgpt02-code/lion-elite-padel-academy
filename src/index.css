@@ -154,3 +154,9 @@ body {
 .pulse-glow-btn {
   animation: pulse-glow 2s infinite;
 }
+
+a,
+button {
+  pointer-events: none;
+  cursor: default;
+}

@@ -43,7 +43,7 @@ const Home = () => {
           <img 
             src="/hero.png" 
             alt="Professional padel tennis training session at Lion Elite Padel Academy Middle East" 
-            className="w-full h-full object-cover object-center scale-105"
+            className="w-full h-full object-cover object-[28%_center] md:object-center scale-105"
           />
         </motion.div>
 

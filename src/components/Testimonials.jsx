@@ -211,19 +211,19 @@ const Testimonials = () => {
                 animate="center"
                 exit="exit"
                 transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                className="relative z-10 grid gap-10 px-7 py-10 md:grid-cols-[0.8fr_1.4fr] md:px-14 md:py-14"
+                className="relative z-10 grid grid-cols-[0.8fr_1.4fr] gap-6 px-5 py-8 md:gap-10 md:px-14 md:py-14"
               >
-                <div className="flex flex-col justify-between border-b border-white/10 pb-8 md:border-b-0 md:border-r md:pb-0 md:pr-10">
+                <div className="flex flex-col justify-between border-r border-white/10 pr-5 md:pr-10">
                   <div>
-                    <p className="mb-5 text-[10px] font-black uppercase tracking-[0.35em] text-[#b7ff00]">Verified Review</p>
+                    <p className="mb-5 text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] md:tracking-[0.35em] text-[#b7ff00]">Verified Review</p>
                     <Avatar initials={t.initials} color={t.color} />
                   </div>
                   <div className="mt-8">
                     <div className="mb-2 flex items-center gap-2">
-                      <span className="text-xl font-black text-white">{t.name}</span>
-                      <span className="text-xl">{t.flag}</span>
+                      <span className="text-sm md:text-xl font-black text-white">{t.name}</span>
+                      <span className="text-base md:text-xl">{t.flag}</span>
                     </div>
-                    <p className="mb-4 text-sm text-gray-500">{t.location}</p>
+                    <p className="mb-4 text-xs md:text-sm text-gray-500">{t.location}</p>
                     <div className="flex flex-wrap gap-2">
                       <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full"
                         style={{ background: 'rgba(183,255,0,0.1)', border: '1px solid rgba(183,255,0,0.25)', color: '#b7ff00' }}>
@@ -240,7 +240,7 @@ const Testimonials = () => {
                 <div>
                   <StarRating delay={0.1} />
                   <blockquote>
-                    <p className="text-2xl font-light leading-tight text-white md:text-3xl lg:text-4xl">
+                    <p className="text-lg font-light leading-tight text-white md:text-3xl lg:text-4xl">
                       "{t.quote}"
                     </p>
                   </blockquote>
