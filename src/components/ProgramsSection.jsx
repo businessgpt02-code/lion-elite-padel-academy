@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   LayoutGrid, Zap, Star, Target, Users, Activity, Trophy,
-  ArrowRight, CheckCircle2, Plus, Minus,
+  ArrowRight, CheckCircle2,
 } from 'lucide-react';
 
-/* ─────────────────────────── DATA ─────────────────────────── */
 const EXPERIENCES = [
   {
     num: '01', icon: LayoutGrid,
@@ -15,7 +14,7 @@ const EXPERIENCES = [
     slug: 'premium-indoor-padel-court-reservations-dubai',
     desc: 'Reserve tournament-quality indoor padel courts featuring professional playing surfaces, LED lighting, premium amenities, and flexible booking options for casual, competitive, and corporate sessions.',
     highlights: ['Tournament-Grade Courts', 'Flexible Booking Slots'],
-    cta: 'Reserve Court', color: '#b7ff00',
+    cta: 'Reserve Court', color: '#A6D608',
   },
   {
     num: '02', icon: Zap,
@@ -24,7 +23,7 @@ const EXPERIENCES = [
     slug: 'professional-adult-padel-coaching-dubai',
     desc: 'Develop your technique, tactical awareness, and match performance through structured coaching programs led by certified coaches for beginners, intermediate players, and advanced competitors.',
     highlights: ['50+ Certified Coaches', 'All Skill Levels'],
-    cta: 'Start Training', color: '#b7ff00',
+    cta: 'Start Training', color: '#A6D608',
   },
   {
     num: '03', icon: Star,
@@ -32,8 +31,8 @@ const EXPERIENCES = [
     tag: 'Junior Padel Academy Dubai',
     slug: 'junior-padel-academy-dubai',
     desc: 'Build confidence, discipline, and technical excellence through age-specific junior programs designed to inspire the next generation of padel players across Dubai and the UAE.',
-    highlights: ['Ages 6–17', '200+ Junior Players'],
-    cta: 'Join Academy', color: '#b7ff00',
+    highlights: ['Ages 6-17', '200+ Junior Players'],
+    cta: 'Join Academy', color: '#A6D608',
   },
   {
     num: '04', icon: Target,
@@ -42,7 +41,7 @@ const EXPERIENCES = [
     slug: 'private-padel-lessons-dubai',
     desc: 'Experience personalized one-to-one coaching with tailored training plans, performance analysis, technical refinement, and tactical development focused entirely on your goals.',
     highlights: ['100% Individual Focus', 'Performance Tracking'],
-    cta: 'Book Session', color: '#b7ff00',
+    cta: 'Book Session', color: '#A6D608',
   },
   {
     num: '05', icon: Users,
@@ -51,7 +50,7 @@ const EXPERIENCES = [
     slug: 'partner-padel-training-dubai-uae',
     desc: 'Train alongside a partner while receiving expert coaching focused on teamwork, communication, positioning, movement, and advanced match strategy.',
     highlights: ['2 Players Per Coach', 'Tactical Game Development'],
-    cta: 'Train Together', color: '#b7ff00',
+    cta: 'Train Together', color: '#A6D608',
   },
   {
     num: '06', icon: Activity,
@@ -59,8 +58,8 @@ const EXPERIENCES = [
     tag: 'Group Padel Training Dubai',
     slug: 'group-padel-training-dubai',
     desc: 'Join dynamic group sessions combining competitive drills, fitness, teamwork, and tactical coaching in a motivating environment led by experienced professional coaches.',
-    highlights: ['4–6 Players', 'Competitive Environment'],
-    cta: 'Join Group', color: '#b7ff00',
+    highlights: ['4-6 Players', 'Competitive Environment'],
+    cta: 'Join Group', color: '#A6D608',
   },
   {
     num: '07', icon: Trophy,
@@ -69,11 +68,10 @@ const EXPERIENCES = [
     slug: 'padel-tournaments-events-dubai',
     desc: "Become part of Dubai's thriving padel community through tournaments, social games, leagues, ladders, networking events, and academy competitions open to all levels.",
     highlights: ['500+ Monthly Matches', 'Active Community'],
-    cta: 'View Events', color: '#b7ff00',
+    cta: 'View Events', color: '#A6D608',
   },
 ];
 
-const INTERVAL = 6000;
 const SITE_URL = 'https://lionelitepadel.com';
 const getExperienceImage = (exp) => `/experience/${Number(exp.num)}.png`;
 
@@ -143,494 +141,187 @@ const experiencesSchema = {
   ],
 };
 
-/* ─────────────── DIAGONAL STRIPE BACKGROUND ─────────────── */
-const DiagonalStripes = () => (
-  <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1400 800">
-    {Array.from({ length: 20 }).map((_, i) => (
-      <line
-        key={i}
-        x1={i * 100 - 200} y1="0"
-        x2={i * 100 + 400} y2="800"
-        stroke="rgba(183,255,0,0.018)" strokeWidth="1"
-      />
-    ))}
-    {/* Corner brackets */}
-    <path d="M40 40 L40 90 M40 40 L90 40" stroke="rgba(183,255,0,0.15)" strokeWidth="1.5" strokeLinecap="round"/>
-    <path d="M1360 40 L1360 90 M1360 40 L1310 40" stroke="rgba(183,255,0,0.15)" strokeWidth="1.5" strokeLinecap="round"/>
-    <path d="M40 760 L40 710 M40 760 L90 760" stroke="rgba(183,255,0,0.15)" strokeWidth="1.5" strokeLinecap="round"/>
-    <path d="M1360 760 L1360 710 M1360 760 L1310 760" stroke="rgba(183,255,0,0.15)" strokeWidth="1.5" strokeLinecap="round"/>
-  </svg>
-);
-
-/* ────────────────── LEFT TAB ITEM ──────────────────────── */
-const TabItem = ({ exp, isActive, onClick, progress }) => {
-  const Icon = exp.icon;
-  return (
-    <button
-      onClick={onClick}
-      className="w-full text-left group relative overflow-hidden transition-all duration-500 outline-none"
-      style={{
-        borderBottom: '1px solid rgba(255,255,255,0.05)',
-        background: isActive ? 'rgba(183,255,0,0.04)' : 'transparent',
-      }}
-      aria-label={exp.title}
-    >
-      {/* Active left accent bar */}
-      <div
-        className="absolute left-0 top-0 bottom-0 w-0.5 transition-all duration-300"
-        style={{ background: isActive ? '#b7ff00' : 'transparent', boxShadow: isActive ? '0 0 12px #b7ff00' : 'none' }}
-      />
-
-      <div className="flex items-center gap-4 px-6 py-5">
-        {/* Number */}
-        <span
-          className="font-black text-xs tracking-widest flex-shrink-0 transition-colors duration-300 w-6"
-          style={{ color: isActive ? '#b7ff00' : 'rgba(255,255,255,0.2)' }}
-        >
-          {exp.num}
-        </span>
-
-        {/* Icon */}
-        <div
-          className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-400"
-          style={{
-            background: isActive ? 'rgba(183,255,0,0.12)' : 'rgba(255,255,255,0.03)',
-            border: `1px solid ${isActive ? 'rgba(183,255,0,0.3)' : 'rgba(255,255,255,0.06)'}`,
-          }}
-        >
-          <Icon size={15} style={{ color: isActive ? '#b7ff00' : 'rgba(255,255,255,0.3)', transition: 'color 0.3s' }} />
-        </div>
-
-        {/* Title */}
-        <span
-          className="text-xs font-bold uppercase tracking-wider leading-tight flex-1 transition-colors duration-300 text-left"
-          style={{ color: isActive ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.35)' }}
-        >
-          {exp.title}
-        </span>
-
-        {/* Arrow */}
-        <ArrowRight
-          size={12}
-          className="flex-shrink-0 transition-all duration-300"
-          style={{
-            color: isActive ? '#b7ff00' : 'transparent',
-            transform: isActive ? 'translateX(0)' : 'translateX(-8px)',
-          }}
-        />
-      </div>
-
-      {/* Progress bar */}
-      {isActive && (
-        <div className="absolute bottom-0 left-0 right-0 h-[2px]" style={{ background: 'rgba(183,255,0,0.08)' }}>
-          <motion.div
-            className="h-full"
-            style={{ background: '#b7ff00', boxShadow: '0 0 8px #b7ff00' }}
-            initial={{ width: '0%' }}
-            animate={{ width: `${progress}%` }}
-            transition={{ ease: 'linear', duration: 0 }}
-          />
-        </div>
-      )}
-    </button>
-  );
+const ctaStyle = {
+  pointerEvents: 'auto',
+  cursor: 'pointer',
 };
 
-/* ─────────────────── RIGHT CONTENT PANEL ───────────────── */
-const ContentPanel = ({ exp }) => {
+const ExperienceRow = ({ exp, index }) => {
   const Icon = exp.icon;
-
-  const variants = {
-    enter:  { opacity: 0, y: 30, scale: 0.98 },
-    center: { opacity: 1, y: 0,  scale: 1    },
-    exit:   { opacity: 0, y: -20, scale: 0.98 },
-  };
+  const isReversed = index % 2 === 1;
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        id={exp.slug}
-        itemScope
-        itemType="https://schema.org/Service"
-        key={exp.num}
-        variants={variants}
-        initial="enter"
-        animate="center"
-        exit="exit"
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="relative h-full rounded-2xl overflow-hidden flex flex-col justify-between"
-        style={{
-          backgroundImage: `linear-gradient(135deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.78) 50%, rgba(0,0,0,0.92) 100%), url(${getExperienceImage(exp)})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          border: '1px solid rgba(183,255,0,0.12)',
-          backdropFilter: 'blur(20px)',
-          minHeight: 520,
-        }}
-      >
-        {/* Giant watermark number */}
-        <div
-          className="absolute right-0 bottom-0 leading-none select-none pointer-events-none overflow-hidden"
-          aria-hidden="true"
-          style={{
-            fontSize: '22rem',
-            fontWeight: 900,
-            color: 'transparent',
-            WebkitTextStroke: '1px rgba(183,255,0,0.06)',
-            lineHeight: 0.85,
-            letterSpacing: '-0.05em',
-          }}
-        >
-          {exp.num}
+    <motion.article
+      id={exp.slug}
+      itemScope
+      itemType="https://schema.org/Service"
+      className="group relative overflow-hidden border-y border-white/10"
+      initial={{ opacity: 0, y: 34 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-120px' }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <div className={`grid min-h-[620px] items-stretch lg:grid-cols-2 ${isReversed ? 'lg:[&>*:first-child]:order-2' : ''}`}>
+        <div className="relative min-h-[360px] overflow-hidden">
+          <img
+            src={getExperienceImage(exp)}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full object-cover transition duration-1000 group-hover:scale-105"
+          />
+          <div className={`absolute inset-0 ${isReversed ? 'lg:bg-gradient-to-l' : 'lg:bg-gradient-to-r'} bg-gradient-to-t from-black via-black/22 to-transparent lg:from-transparent lg:via-black/14 lg:to-black/82`} />
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(166,214,8,0.18),transparent_38%)] opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+          <div className="absolute bottom-6 left-6 flex items-center gap-3">
+            <span className="text-8xl font-black leading-none text-white/10 md:text-9xl">{exp.num}</span>
+            <div className="hidden h-px w-28 bg-[#A6D608]/60 md:block" />
+          </div>
         </div>
 
-        {/* Diagonal accent stripe */}
-        <div
-          className="absolute top-0 right-0 w-64 h-64 pointer-events-none"
-          style={{
-            background: 'radial-gradient(circle at top right, rgba(183,255,0,0.08) 0%, transparent 65%)',
-          }}
-        />
-
-        {/* Content */}
-        <div className="relative z-10 p-10 md:p-14 flex flex-col h-full justify-between">
-          <div>
-            {/* Top row: icon + tag */}
-            <div className="flex items-center gap-5 mb-8">
-              <motion.div
-                initial={{ scale: 0.7, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0"
-                style={{
-                  background: 'rgba(183,255,0,0.1)',
-                  border: '1px solid rgba(183,255,0,0.25)',
-                  boxShadow: '0 0 30px rgba(183,255,0,0.15)',
-                }}
-              >
-                <Icon size={30} style={{ color: '#b7ff00', filter: 'drop-shadow(0 0 8px #b7ff0088)' }} />
-              </motion.div>
-
+        <div className="relative flex items-center bg-[#050505] px-6 py-12 md:px-12 lg:px-16">
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:74px_74px] opacity-30" />
+          <div className="relative max-w-2xl">
+            <div className="mb-8 flex items-center gap-4">
+              <div className="flex h-14 w-14 items-center justify-center rounded-sm bg-[#A6D608] text-black shadow-[0_0_40px_rgba(166,214,8,0.22)]">
+                <Icon size={26} />
+              </div>
               <div>
-                <span
-                  itemProp="serviceType"
-                  className="text-xs font-black uppercase tracking-[0.3em] block mb-1"
-                  style={{ color: '#b7ff00', textShadow: '0 0 10px rgba(183,255,0,0.4)' }}
-                >
+                <p itemProp="serviceType" className="text-xs font-black uppercase tracking-[0.3em] text-[#A6D608]">
                   {exp.tag}
-                </span>
-                <span className="text-xs text-gray-600 uppercase tracking-widest font-bold">
-                  Lion Elite Padel Academy Dubai
-                </span>
+                </p>
+                <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.22em] text-white/30">
+                  Lion Elite Padel Academy Middle East
+                </p>
               </div>
             </div>
 
-            {/* Title */}
-            <motion.h3
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.55, delay: 0.15 }}
-              className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-none mb-6"
-              itemProp="name"
-            >
+            <h3 itemProp="name" className="mb-7 text-4xl font-black uppercase leading-[0.9] tracking-tight text-white md:text-5xl xl:text-6xl">
               {exp.title}
-            </motion.h3>
+            </h3>
 
-            {/* Divider */}
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="mb-6 h-px origin-left"
-              style={{ background: 'linear-gradient(90deg, #b7ff00, rgba(183,255,0,0.2), transparent)' }}
-            />
-
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.25 }}
-              className="text-gray-400 leading-relaxed text-base font-light mb-8 max-w-xl"
-              itemProp="description"
-            >
+            <p itemProp="description" className="mb-9 max-w-xl text-base font-light leading-relaxed text-white/68 md:text-lg">
               {exp.desc}
-            </motion.p>
+            </p>
 
-            {/* Highlights */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-wrap gap-3 mb-10"
-            >
-              {exp.highlights.map((h) => (
-                <div
-                  key={h}
-                  className="flex items-center gap-2 px-4 py-2 rounded-full"
-                  style={{
-                    background: 'rgba(183,255,0,0.07)',
-                    border: '1px solid rgba(183,255,0,0.18)',
-                  }}
-                >
-                  <CheckCircle2 size={12} style={{ color: '#b7ff00' }} />
-                  <span className="text-xs font-black uppercase tracking-wider text-white/80">{h}</span>
+            <div className="mb-10 grid gap-3 sm:grid-cols-2">
+              {exp.highlights.map((highlight) => (
+                <div key={highlight} className="flex min-h-14 items-center gap-3 border border-white/10 bg-white/[0.035] px-4 py-3">
+                  <CheckCircle2 size={17} className="shrink-0 text-[#A6D608]" />
+                  <span className="text-xs font-black uppercase tracking-[0.16em] text-white/78">
+                    {highlight}
+                  </span>
                 </div>
               ))}
-            </motion.div>
-          </div>
+            </div>
 
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.38 }}
-          >
             <Link
               to="/contact"
               itemProp="url"
-              className="inline-flex items-center gap-3 group/cta relative overflow-hidden px-8 py-4 font-black text-xs uppercase tracking-[0.25em] text-black"
-              style={{ background: '#b7ff00', boxShadow: '0 0 30px rgba(183,255,0,0.25)' }}
+              className="group/link inline-flex items-center gap-3 bg-[#A6D608] px-8 py-4 text-xs font-black uppercase tracking-[0.24em] text-black transition-colors duration-300 hover:bg-white"
+              style={ctaStyle}
             >
-              <span className="absolute inset-0 bg-white opacity-0 group-hover/cta:opacity-20 transition-opacity duration-300" />
-              <span className="relative">{exp.cta}</span>
-              <ArrowRight size={14} className="relative group-hover/cta:translate-x-1.5 transition-transform duration-300" />
+              <span>{exp.cta}</span>
+              <ArrowRight size={16} className="transition-transform duration-300 group-hover/link:translate-x-1.5" />
             </Link>
-          </motion.div>
+          </div>
         </div>
-
-        {/* Bottom decorative bar */}
-        <div className="absolute bottom-0 left-0 right-0 h-px"
-          style={{ background: 'linear-gradient(90deg, transparent, rgba(183,255,0,0.2), transparent)' }}
-        />
-      </motion.div>
-    </AnimatePresence>
+      </div>
+    </motion.article>
   );
 };
 
-/* ─────────────── MOBILE ACCORDION ITEM ─────────────── */
-const AccordionItem = ({ exp, isOpen, onClick }) => {
-  const Icon = exp.icon;
-  return (
-    <div
-      id={`mobile-${exp.slug}`}
-      itemScope
-      itemType="https://schema.org/Service"
-      className="overflow-hidden rounded-xl transition-all duration-500"
-      style={{
-        backgroundImage: `linear-gradient(135deg, rgba(0,0,0,${isOpen ? 0.86 : 0.78}) 0%, rgba(0,0,0,0.9) 100%), url(${getExperienceImage(exp)})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        border: `1px solid ${isOpen ? 'rgba(183,255,0,0.2)' : 'rgba(255,255,255,0.06)'}`,
-        marginBottom: 8,
-      }}
-    >
-      <button
-        onClick={onClick}
-        className="w-full flex items-center justify-between gap-4 p-5 text-left outline-none"
-      >
-        <div className="flex items-center gap-3">
-          <span className="text-xs font-black tracking-widest" style={{ color: '#b7ff00' }}>{exp.num}</span>
-          <Icon size={16} style={{ color: isOpen ? '#b7ff00' : 'rgba(255,255,255,0.4)' }} />
-          <span className="text-sm font-black uppercase tracking-wide text-white/80" itemProp="name">{exp.title}</span>
-        </div>
-        {isOpen
-          ? <Minus size={14} style={{ color: '#b7ff00', flexShrink: 0 }} />
-          : <Plus size={14} style={{ color: 'rgba(255,255,255,0.3)', flexShrink: 0 }} />
-        }
-      </button>
-
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="px-5 pb-6">
-              <p className="text-gray-400 text-sm leading-relaxed mb-4" itemProp="description">{exp.desc}</p>
-              <div className="flex flex-wrap gap-2 mb-5">
-                {exp.highlights.map((h) => (
-                  <div key={h} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full"
-                    style={{ background: 'rgba(183,255,0,0.07)', border: '1px solid rgba(183,255,0,0.18)' }}>
-                    <CheckCircle2 size={10} style={{ color: '#b7ff00' }} />
-                    <span className="text-[10px] font-black uppercase tracking-wider text-white/70">{h}</span>
-                  </div>
-                ))}
-              </div>
-              <Link to="/contact"
-                itemProp="url"
-                className="inline-flex items-center gap-2 px-5 py-2.5 text-[10px] font-black uppercase tracking-widest text-black"
-                style={{ background: '#b7ff00' }}>
-                {exp.cta} <ArrowRight size={11} />
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-};
-
-/* ══════════════════════ MAIN SECTION ══════════════════════ */
 const ProgramsSection = () => {
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [openAccordion, setOpenAccordion] = useState(0);
   const sectionRef = useRef(null);
-  const progressRef = useRef(0);
-  const lastTickRef = useRef(null);
-  const rafRef = useRef(null);
-
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
-  const bgY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
-
   const headingRef = useRef(null);
   const headingInView = useInView(headingRef, { once: true, margin: '-60px' });
-
-  /* Smooth RAF-based progress */
-  const tick = useCallback((timestamp) => {
-    if (!lastTickRef.current) lastTickRef.current = timestamp;
-    const delta = timestamp - lastTickRef.current;
-    lastTickRef.current = timestamp;
-
-    progressRef.current = Math.min(progressRef.current + (delta / INTERVAL) * 100, 100);
-    setProgress(progressRef.current);
-
-    if (progressRef.current >= 100) {
-      progressRef.current = 0;
-      setActive((prev) => (prev + 1) % EXPERIENCES.length);
-    }
-
-    rafRef.current = requestAnimationFrame(tick);
-  }, []);
-
-  useEffect(() => {
-    if (paused) { cancelAnimationFrame(rafRef.current); lastTickRef.current = null; return; }
-    progressRef.current = 0;
-    setProgress(0);
-    lastTickRef.current = null;
-    rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, [active, paused, tick]);
-
-  const handleTabClick = (i) => {
-    progressRef.current = 0;
-    setProgress(0);
-    lastTickRef.current = null;
-    setActive(i);
-  };
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
+  const bgY = useTransform(scrollYProgress, [0, 1], ['-4%', '5%']);
 
   return (
     <section
       id="padel-experiences"
       ref={sectionRef}
-      className="relative overflow-hidden pt-2 pb-8"
-      style={{ background: 'linear-gradient(160deg, #020202 0%, #060606 40%, #040404 70%, #020202 100%)' }}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      className="relative overflow-hidden pt-10 pb-8 md:pt-14 md:pb-10"
+      style={{ background: 'linear-gradient(180deg, #030303 0%, #080808 45%, #030303 100%)' }}
       aria-labelledby="padel-experiences-heading"
     >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(experiencesSchema) }}
       />
-      {/* ── BG ── */}
+
       <motion.div className="absolute inset-0 pointer-events-none" style={{ y: bgY }}>
-        <DiagonalStripes />
-        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(183,255,0,0.03) 0%, transparent 70%)' }} />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(180deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:80px_80px]" />
+        <div className="absolute left-0 top-24 h-px w-full bg-gradient-to-r from-transparent via-[#A6D608]/35 to-transparent" />
+        <div className="absolute bottom-28 left-0 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
       </motion.div>
 
-      {/* Floating particles */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {Array.from({ length: 10 }).map((_, i) => (
-          <motion.div key={i} className="absolute rounded-full"
-            style={{ width: 2 + (i % 3), height: 2 + (i % 3), left: `${(i * 23 + 7) % 95}%`, top: `${(i * 19 + 5) % 90}%`, background: i % 2 === 0 ? '#b7ff00' : '#fff', opacity: 0.07 }}
-            animate={{ y: [0, -35, 0], opacity: [0.07, 0.22, 0.07] }}
-            transition={{ duration: 4 + (i % 4), repeat: Infinity, ease: 'easeInOut', delay: i * 0.4 }}
-          />
-        ))}
-      </div>
+      <div className="container relative z-10 mx-auto px-6">
+        <div ref={headingRef} className="mb-8 grid gap-8 lg:grid-cols-[0.95fr_0.65fr] lg:items-end">
+          <div>
+            <motion.div
+              className="mb-5 inline-flex items-center gap-3"
+              initial={{ opacity: 0, y: 18 }}
+              animate={headingInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="h-px w-10 bg-[#A6D608]" />
+              <span className="text-xs font-black uppercase tracking-[0.35em] text-[#A6D608]">
+                Our Padel Experiences
+              </span>
+            </motion.div>
 
-      <div className="relative z-10 container mx-auto px-6">
+            <motion.h2
+              id="padel-experiences-heading"
+              className="max-w-4xl text-4xl font-black uppercase leading-[0.9] tracking-tight text-white md:text-6xl lg:text-7xl"
+              initial={{ opacity: 0, y: 28 }}
+              animate={headingInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.75, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+            >
+              Padel Experiences in Dubai to <span className="text-[#A6D608]">Elevate Your Game</span>
+            </motion.h2>
+          </div>
 
-        {/* ── Header ── */}
-        <div ref={headingRef} className="mb-16 max-w-2xl">
-          <motion.div className="inline-flex items-center gap-3 mb-5"
-            initial={{ opacity: 0, y: 20 }} animate={headingInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }}>
-            <div className="w-8 h-px bg-[#b7ff00]" />
-            <span className="text-xs font-black uppercase tracking-[0.35em]" style={{ color: '#b7ff00', textShadow: '0 0 12px #b7ff0055' }}>
-              Our Padel Experiences
-            </span>
-          </motion.div>
-
-          <motion.h2
-            id="padel-experiences-heading"
-            className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white leading-[0.9] mb-5"
-            initial={{ opacity: 0, y: 30 }} animate={headingInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}>
-            Padel Experiences in Dubai to{' '}
-            <span style={{ WebkitTextStroke: '1.5px #b7ff00', color: 'transparent', filter: 'drop-shadow(0 0 12px #b7ff0044)' }}>
-              Elevate Your Game
-            </span>
-          </motion.h2>
-
-          <motion.p className="text-gray-500 text-sm leading-relaxed"
-            initial={{ opacity: 0 }} animate={headingInView ? { opacity: 1 } : {}} transition={{ duration: 0.7, delay: 0.25 }}>
-            From elite coaching to premium courts — a complete padel experience for every player.
+          <motion.p
+            className="max-w-md text-sm font-light leading-relaxed text-white/52 md:text-base lg:justify-self-end"
+            initial={{ opacity: 0, y: 18 }}
+            animate={headingInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.65, delay: 0.18 }}
+          >
+            From elite coaching to premium courts - a complete padel experience for every player.
           </motion.p>
         </div>
 
-        {/* ── DESKTOP: Split layout ── */}
-        <ol className="sr-only" aria-label="Complete list of padel services in Dubai and UAE">
-          {EXPERIENCES.map((exp) => (
-            <li key={`seo-${exp.num}`}>
-              <h3>{`${exp.title}: ${exp.tag}`}</h3>
-              <p>{exp.desc}</p>
-            </li>
-          ))}
-        </ol>
+      </div>
 
-        <div className="hidden lg:grid grid-cols-[380px_1fr] gap-6 items-stretch">
+      <div className="relative z-10 mt-4">
+        {EXPERIENCES.map((exp, index) => (
+          <ExperienceRow key={exp.num} exp={exp} index={index} />
+        ))}
+      </div>
 
-          {/* Left tab list */}
-          <div className="rounded-2xl overflow-hidden flex flex-col"
-            style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
-            {EXPERIENCES.map((exp, i) => (
-              <TabItem key={exp.num} exp={exp} isActive={active === i} onClick={() => handleTabClick(i)}
-                progress={active === i ? progress : 0} />
-            ))}
-          </div>
-
-          {/* Right content */}
-          <ContentPanel exp={EXPERIENCES[active]} />
-        </div>
-
-        {/* ── MOBILE: Accordion ── */}
-        <div className="lg:hidden">
-          {EXPERIENCES.map((exp, i) => (
-            <AccordionItem key={exp.num} exp={exp} isOpen={openAccordion === i}
-              onClick={() => setOpenAccordion(openAccordion === i ? -1 : i)} />
-          ))}
-        </div>
-
-        {/* ── Bottom CTA ── */}
-        <motion.div className="text-center mt-20"
-          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
-          <p className="text-gray-600 text-xs uppercase tracking-[0.3em] font-bold mb-5">Ready to get on court?</p>
-          <Link to="/contact"
-            className="inline-flex items-center gap-3 px-10 py-5 font-black text-xs uppercase tracking-[0.25em] text-black group"
-            style={{ background: '#b7ff00', boxShadow: '0 0 40px rgba(183,255,0,0.25)' }}>
+      <div className="container relative z-10 mx-auto px-6">
+        <motion.div
+          className="mt-10 flex flex-col items-start justify-between gap-6 border-t border-white/10 pt-6 md:flex-row md:items-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <p className="text-xs font-bold uppercase tracking-[0.28em] text-white/38">
+            Ready to get on court?
+          </p>
+          <Link
+            to="/contact"
+            className="group inline-flex items-center gap-3 bg-white px-8 py-4 text-xs font-black uppercase tracking-[0.22em] text-black transition-colors duration-300 hover:bg-[#A6D608]"
+            style={ctaStyle}
+          >
             <span>Book Your Experience</span>
-            <ArrowRight size={16} className="group-hover:translate-x-1.5 transition-transform duration-300" />
+            <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1.5" />
           </Link>
         </motion.div>
-
       </div>
     </section>
   );
 };
 
 export default ProgramsSection;
-

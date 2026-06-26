@@ -18,7 +18,7 @@ const Contact = () => {
   return (
     <div className="w-full pt-32 min-h-screen bg-[#030303] relative overflow-hidden">
       {/* Background glow */}
-      <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-[#ccff00] opacity-[0.03] blur-[150px] rounded-full pointer-events-none"></div>
+      <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-[#A6D608] opacity-[0.03] blur-[150px] rounded-full pointer-events-none"></div>
 
       <div className="container mx-auto px-6 pb-24 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
@@ -31,8 +31,8 @@ const Contact = () => {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-[1px] bg-[#ccff00]"></div>
-                <span className="uppercase tracking-[0.3em] text-[#ccff00] text-sm font-bold">Connect</span>
+                <div className="w-12 h-[1px] bg-[#A6D608]"></div>
+                <span className="uppercase tracking-[0.3em] text-[#A6D608] text-sm font-bold">Connect</span>
               </div>
               <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] mb-8">
                 Initiate <br/> <span className="text-stroke text-transparent">Contact</span>
@@ -49,7 +49,7 @@ const Contact = () => {
                   { icon: <Mail />, title: "Dispatch", content: "info@lionelitepadel.com" }
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-start gap-6 group">
-                    <div className="w-14 h-14 border border-white/10 rounded-full flex items-center justify-center text-white group-hover:border-[#ccff00] group-hover:text-[#ccff00] transition-colors duration-300 shrink-0">
+                    <div className="w-14 h-14 border border-white/10 rounded-full flex items-center justify-center text-white group-hover:border-[#A6D608] group-hover:text-[#A6D608] transition-colors duration-300 shrink-0">
                       {item.icon}
                     </div>
                     <div>
@@ -83,37 +83,37 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="relative group">
-                    <input required type="text" className="w-full bg-transparent border-b border-white/20 pb-4 text-white placeholder-transparent focus:outline-none focus:border-[#ccff00] peer transition-colors" placeholder="First Name" id="fname" />
-                    <label htmlFor="fname" className="absolute left-0 top-0 text-gray-500 text-xs uppercase tracking-[0.2em] font-bold transition-all peer-focus:-top-5 peer-focus:text-[#ccff00] peer-valid:-top-5 peer-valid:text-gray-300 pointer-events-none">First Name</label>
+                    <input required type="text" className="w-full bg-transparent border-b border-white/20 pb-4 text-white placeholder-transparent focus:outline-none focus:border-[#A6D608] peer transition-colors" placeholder="First Name" id="fname" />
+                    <label htmlFor="fname" className="absolute left-0 top-0 text-gray-500 text-xs uppercase tracking-[0.2em] font-bold transition-all peer-focus:-top-5 peer-focus:text-[#A6D608] peer-valid:-top-5 peer-valid:text-gray-300 pointer-events-none">First Name</label>
                   </div>
                   <div className="relative group">
-                    <input required type="text" className="w-full bg-transparent border-b border-white/20 pb-4 text-white placeholder-transparent focus:outline-none focus:border-[#ccff00] peer transition-colors" placeholder="Last Name" id="lname" />
-                    <label htmlFor="lname" className="absolute left-0 top-0 text-gray-500 text-xs uppercase tracking-[0.2em] font-bold transition-all peer-focus:-top-5 peer-focus:text-[#ccff00] peer-valid:-top-5 peer-valid:text-gray-300 pointer-events-none">Last Name</label>
+                    <input required type="text" className="w-full bg-transparent border-b border-white/20 pb-4 text-white placeholder-transparent focus:outline-none focus:border-[#A6D608] peer transition-colors" placeholder="Last Name" id="lname" />
+                    <label htmlFor="lname" className="absolute left-0 top-0 text-gray-500 text-xs uppercase tracking-[0.2em] font-bold transition-all peer-focus:-top-5 peer-focus:text-[#A6D608] peer-valid:-top-5 peer-valid:text-gray-300 pointer-events-none">Last Name</label>
                   </div>
                 </div>
 
                 <div className="relative group">
-                  <input required type="email" className="w-full bg-transparent border-b border-white/20 pb-4 text-white placeholder-transparent focus:outline-none focus:border-[#ccff00] peer transition-colors" placeholder="Email" id="email" />
-                  <label htmlFor="email" className="absolute left-0 top-0 text-gray-500 text-xs uppercase tracking-[0.2em] font-bold transition-all peer-focus:-top-5 peer-focus:text-[#ccff00] peer-valid:-top-5 peer-valid:text-gray-300 pointer-events-none">Email Coordinates</label>
+                  <input required type="email" className="w-full bg-transparent border-b border-white/20 pb-4 text-white placeholder-transparent focus:outline-none focus:border-[#A6D608] peer transition-colors" placeholder="Email" id="email" />
+                  <label htmlFor="email" className="absolute left-0 top-0 text-gray-500 text-xs uppercase tracking-[0.2em] font-bold transition-all peer-focus:-top-5 peer-focus:text-[#A6D608] peer-valid:-top-5 peer-valid:text-gray-300 pointer-events-none">Email Coordinates</label>
                 </div>
 
                 <div className="relative group">
-                  <input required type="tel" className="w-full bg-transparent border-b border-white/20 pb-4 text-white placeholder-transparent focus:outline-none focus:border-[#ccff00] peer transition-colors" placeholder="Phone" id="phone" />
-                  <label htmlFor="phone" className="absolute left-0 top-0 text-gray-500 text-xs uppercase tracking-[0.2em] font-bold transition-all peer-focus:-top-5 peer-focus:text-[#ccff00] peer-valid:-top-5 peer-valid:text-gray-300 pointer-events-none">Comms Number</label>
+                  <input required type="tel" className="w-full bg-transparent border-b border-white/20 pb-4 text-white placeholder-transparent focus:outline-none focus:border-[#A6D608] peer transition-colors" placeholder="Phone" id="phone" />
+                  <label htmlFor="phone" className="absolute left-0 top-0 text-gray-500 text-xs uppercase tracking-[0.2em] font-bold transition-all peer-focus:-top-5 peer-focus:text-[#A6D608] peer-valid:-top-5 peer-valid:text-gray-300 pointer-events-none">Comms Number</label>
                 </div>
 
                 <div className="relative group pt-4">
-                  <textarea required rows="1" className="w-full bg-transparent border-b border-white/20 pb-4 text-white placeholder-transparent focus:outline-none focus:border-[#ccff00] peer transition-colors resize-none overflow-hidden" placeholder="Message" id="msg"></textarea>
-                  <label htmlFor="msg" className="absolute left-0 top-4 text-gray-500 text-xs uppercase tracking-[0.2em] font-bold transition-all peer-focus:-top-2 peer-focus:text-[#ccff00] peer-valid:-top-2 peer-valid:text-gray-300 pointer-events-none">Intelligence / Request</label>
+                  <textarea required rows="1" className="w-full bg-transparent border-b border-white/20 pb-4 text-white placeholder-transparent focus:outline-none focus:border-[#A6D608] peer transition-colors resize-none overflow-hidden" placeholder="Message" id="msg"></textarea>
+                  <label htmlFor="msg" className="absolute left-0 top-4 text-gray-500 text-xs uppercase tracking-[0.2em] font-bold transition-all peer-focus:-top-2 peer-focus:text-[#A6D608] peer-valid:-top-2 peer-valid:text-gray-300 pointer-events-none">Intelligence / Request</label>
                 </div>
 
                 <button 
                   type="submit" 
                   disabled={formStatus === 'sending' || formStatus === 'sent'}
-                  className={`w-full py-5 rounded-none font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 transition-all duration-500 border border-[#ccff00] ${
+                  className={`w-full py-5 rounded-none font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 transition-all duration-500 border border-[#A6D608] ${
                     formStatus === 'sent' 
-                      ? 'bg-[#ccff00] text-black' 
-                      : 'bg-transparent text-[#ccff00] hover:bg-[#ccff00] hover:text-black glow-effect'
+                      ? 'bg-[#A6D608] text-black' 
+                      : 'bg-transparent text-[#A6D608] hover:bg-[#A6D608] hover:text-black glow-effect'
                   }`}
                 >
                   {formStatus === 'idle' && <>Deploy Message <ArrowRight size={20} /></>}

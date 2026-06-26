@@ -17,8 +17,8 @@ const FadeUp = ({ children, delay = 0 }) => (
 
 const CourtCard = ({ title, tag, desc, image, icon: Icon, features, delay }) => (
   <FadeUp delay={delay}>
-    <div className="glass-card-premium rounded-none h-full flex flex-col group overflow-hidden relative border border-white/5 hover:border-[#ccff00]/30 transition-colors duration-500">
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#ccff00]/0 to-transparent group-hover:via-[#ccff00] transition-all duration-700"></div>
+    <div className="glass-card-premium rounded-none h-full flex flex-col group overflow-hidden relative border border-white/5 hover:border-[#A6D608]/30 transition-colors duration-500">
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#A6D608]/0 to-transparent group-hover:via-[#A6D608] transition-all duration-700"></div>
       
       <div className="relative h-72 overflow-hidden bg-[#0a0a0a]">
         <img 
@@ -28,11 +28,11 @@ const CourtCard = ({ title, tag, desc, image, icon: Icon, features, delay }) => 
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
         <div className="absolute bottom-6 left-8 z-20 flex items-center gap-4">
-          <div className="w-12 h-12 rounded-full glass flex items-center justify-center text-[#ccff00]">
+          <div className="w-12 h-12 rounded-full glass flex items-center justify-center text-[#A6D608]">
             <Icon size={24} />
           </div>
           <div>
-            <span className="text-[#ccff00] text-[10px] font-bold uppercase tracking-[0.2em] mb-1 block">{tag}</span>
+            <span className="text-[#A6D608] text-[10px] font-bold uppercase tracking-[0.2em] mb-1 block">{tag}</span>
             <h3 className="text-3xl font-black text-white uppercase tracking-wider">{title}</h3>
           </div>
         </div>
@@ -44,15 +44,15 @@ const CourtCard = ({ title, tag, desc, image, icon: Icon, features, delay }) => 
         <div className="grid grid-cols-2 gap-y-4 gap-x-2 mb-10 flex-grow">
           {features.map((feature, i) => (
             <div key={i} className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 bg-[#ccff00] rounded-full"></div>
+              <div className="w-1.5 h-1.5 bg-[#A6D608] rounded-full"></div>
               <span className="text-gray-300 text-sm font-medium uppercase tracking-wider text-[10px]">{feature}</span>
             </div>
           ))}
         </div>
 
-        <Link to="/contact" className="relative inline-flex items-center justify-center w-full py-4 text-xs font-bold tracking-[0.2em] uppercase text-white border border-white/20 hover:border-[#ccff00] hover:text-[#ccff00] transition-colors group overflow-hidden">
+        <Link to="/contact" className="relative inline-flex items-center justify-center w-full py-4 text-xs font-bold tracking-[0.2em] uppercase text-white border border-white/20 hover:border-[#A6D608] hover:text-[#A6D608] transition-colors group overflow-hidden">
           <span className="relative z-10">Reserve Court</span>
-          <div className="absolute inset-0 bg-[#ccff00]/5 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+          <div className="absolute inset-0 bg-[#A6D608]/5 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
         </Link>
       </div>
     </div>
@@ -104,7 +104,7 @@ const Courts = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="uppercase tracking-[0.4em] text-[#ccff00] text-xs font-bold block mb-6">The Battlegrounds</span>
+          <span className="uppercase tracking-[0.4em] text-[#A6D608] text-xs font-bold block mb-6">The Battlegrounds</span>
           <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9]">
             Engineered For <br/> <span className="text-stroke text-transparent">Excellence</span>
           </h1>

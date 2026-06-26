@@ -22,7 +22,7 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               {[Globe, Users, Share2].map((Icon, i) => (
-                <a key={i} href="#" className="w-12 h-12 rounded-none border border-white/10 flex items-center justify-center text-gray-400 hover:border-[#ccff00] hover:text-[#ccff00] transition-colors duration-300 bg-[#0a0a0a]">
+                <a key={i} href="#" className="w-12 h-12 rounded-none border border-white/10 flex items-center justify-center text-gray-400 hover:border-[#A6D608] hover:text-[#A6D608] transition-colors duration-300 bg-[#0a0a0a]">
                   <Icon size={20} />
                 </a>
               ))}
@@ -35,9 +35,9 @@ const Footer = () => {
             <ul className="flex flex-col gap-4">
               {['Home', 'About', 'Courts', 'Contact'].map((item) => (
                 <li key={item}>
-                  <Link to={item === 'Home' ? '/' : `/${item.toLowerCase()}`} className="text-gray-400 hover:text-[#ccff00] font-light transition-colors relative group inline-block">
+                  <Link to={item === 'Home' ? '/' : `/${item.toLowerCase()}`} className="text-gray-400 hover:text-[#A6D608] font-light transition-colors relative group inline-block">
                     <span className="relative z-10">{item}</span>
-                    <span className="absolute left-0 bottom-0 w-full h-[1px] bg-[#ccff00] scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                    <span className="absolute left-0 bottom-0 w-full h-[1px] bg-[#A6D608] scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
                   </Link>
                 </li>
               ))}

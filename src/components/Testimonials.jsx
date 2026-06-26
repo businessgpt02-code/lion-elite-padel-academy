@@ -8,7 +8,7 @@ const TESTIMONIALS = [
     id: 1, flag: '🇦🇪', name: 'Ahmed Al Mansoori', location: 'Dubai, UAE',
     level: 'Advanced',
     quote: 'Professional coaching, premium courts, and an incredible atmosphere. Every training session pushes me to become a better player.',
-    initials: 'AA', color: '#b7ff00',
+    initials: 'AA', color: '#A6D608',
   },
   {
     id: 2, flag: '🇮🇳', name: 'Rahul Sharma', location: 'Mumbai, India',
@@ -20,7 +20,7 @@ const TESTIMONIALS = [
     id: 3, flag: '🇬🇧', name: 'James Wilson', location: 'London, United Kingdom',
     level: 'Tournament Player',
     quote: 'Exceptional facilities and world-class coaching. Easily one of the best padel academies I\'ve experienced anywhere in the world.',
-    initials: 'JW', color: '#b7ff00',
+    initials: 'JW', color: '#A6D608',
   },
   {
     id: 4, flag: '🇪🇬', name: 'Omar Hassan', location: 'Cairo, Egypt',
@@ -32,7 +32,7 @@ const TESTIMONIALS = [
     id: 5, flag: '🇵🇭', name: 'Maria Santos', location: 'Manila, Philippines',
     level: 'Beginner',
     quote: 'A welcoming community, excellent coaches, and premium courts. Every single visit is an enjoyable and rewarding experience.',
-    initials: 'MS', color: '#b7ff00',
+    initials: 'MS', color: '#A6D608',
   },
   {
     id: 6, flag: '🇵🇰', name: 'Ali Khan', location: 'Karachi, Pakistan',
@@ -44,7 +44,7 @@ const TESTIMONIALS = [
     id: 7, flag: '🇪🇸', name: 'Carlos Fernandez', location: 'Madrid, Spain',
     level: 'Tournament Player',
     quote: 'The quality of coaching here rivals top European academies. I was genuinely impressed from the very first session.',
-    initials: 'CF', color: '#b7ff00',
+    initials: 'CF', color: '#A6D608',
   },
   {
     id: 8, flag: '🇫🇷', name: 'Sophie Laurent', location: 'Paris, France',
@@ -56,7 +56,7 @@ const TESTIMONIALS = [
     id: 9, flag: '🇩🇪', name: 'Lukas Weber', location: 'Berlin, Germany',
     level: 'Intermediate',
     quote: 'Professional from start to finish. The academy has exceeded every single expectation I had before joining.',
-    initials: 'LW', color: '#b7ff00',
+    initials: 'LW', color: '#A6D608',
   },
   {
     id: 10, flag: '🇱🇧', name: 'Nour Haddad', location: 'Beirut, Lebanon',
@@ -68,21 +68,21 @@ const TESTIMONIALS = [
 
 const LEVEL_COLORS = {
   Beginner:          { bg: 'rgba(0,229,255,0.12)',   border: '#00e5ff', text: '#00e5ff' },
-  Intermediate:      { bg: 'rgba(183,255,0,0.12)',   border: '#b7ff00', text: '#b7ff00' },
+  Intermediate:      { bg: 'rgba(166,214,8,0.12)',   border: '#A6D608', text: '#A6D608' },
   Advanced:          { bg: 'rgba(255,159,0,0.12)',   border: '#ff9f00', text: '#ff9f00' },
-  'Tournament Player': { bg: 'rgba(183,255,0,0.18)', border: '#b7ff00', text: '#b7ff00' },
+  'Tournament Player': { bg: 'rgba(166,214,8,0.18)', border: '#A6D608', text: '#A6D608' },
 };
 
 /* ─────────────────────── FLOATING PARTICLES ─────────────────── */
 /* ─────────────────────── COURT LINE SVG ─────────────────────── */
 const CourtLines = () => (
   <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1200 700" fill="none">
-    <rect x="80"  y="60"  width="1040" height="580" stroke="rgba(183,255,0,0.04)" strokeWidth="1.5" />
-    <line x1="80" y1="350" x2="1120" y2="350"       stroke="rgba(183,255,0,0.03)" strokeWidth="1" />
-    <line x1="600" y1="60" x2="600"  y2="640"       stroke="rgba(183,255,0,0.025)" strokeWidth="1" />
-    <rect x="300" y="180" width="600" height="340"   stroke="rgba(183,255,0,0.03)" strokeWidth="1" />
-    <rect x="80"  y="60"  width="1040" height="20"   fill="rgba(183,255,0,0.015)" />
-    <rect x="80"  y="620" width="1040" height="20"   fill="rgba(183,255,0,0.015)" />
+    <rect x="80"  y="60"  width="1040" height="580" stroke="rgba(166,214,8,0.04)" strokeWidth="1.5" />
+    <line x1="80" y1="350" x2="1120" y2="350"       stroke="rgba(166,214,8,0.03)" strokeWidth="1" />
+    <line x1="600" y1="60" x2="600"  y2="640"       stroke="rgba(166,214,8,0.025)" strokeWidth="1" />
+    <rect x="300" y="180" width="600" height="340"   stroke="rgba(166,214,8,0.03)" strokeWidth="1" />
+    <rect x="80"  y="60"  width="1040" height="20"   fill="rgba(166,214,8,0.015)" />
+    <rect x="80"  y="620" width="1040" height="20"   fill="rgba(166,214,8,0.015)" />
   </svg>
 );
 
@@ -91,7 +91,7 @@ const StarRating = ({ delay = 0 }) => (
   <motion.div className="flex items-center gap-1 mb-7" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay }}>
     {Array.from({ length: 5 }).map((_, i) => (
       <motion.div key={i} initial={{ opacity: 0, rotate: -20 }} animate={{ opacity: 1, rotate: 0 }} transition={{ duration: 0.3, delay: delay + i * 0.07 }}>
-        <Star size={17} className="fill-[#b7ff00] text-[#b7ff00]" />
+        <Star size={17} className="fill-[#A6D608] text-[#A6D608]" />
       </motion.div>
     ))}
   </motion.div>
@@ -150,9 +150,9 @@ const Testimonials = () => {
       {/* Parallax BG */}
       <motion.div className="absolute inset-0 pointer-events-none" style={{ y: bgY }}>
         <CourtLines />
-        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 50%,rgba(183,255,0,0.04) 0%,transparent 70%)' }} />
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#b7ff00]/20 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#b7ff00]/20 to-transparent" />
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 50%,rgba(166,214,8,0.04) 0%,transparent 70%)' }} />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#A6D608]/20 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#A6D608]/20 to-transparent" />
       </motion.div>
 
       {/* Active ambient glow */}
@@ -172,15 +172,15 @@ const Testimonials = () => {
         {/* Section header */}
         <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
           <div className="inline-flex items-center gap-3 mb-5">
-            <div className="w-8 h-px bg-[#b7ff00]" />
-            <span className="text-xs font-black uppercase tracking-[0.35em]" style={{ color: '#b7ff00', textShadow: '0 0 12px #b7ff0066' }}>
+            <div className="w-8 h-px bg-[#A6D608]" />
+            <span className="text-xs font-black uppercase tracking-[0.35em]" style={{ color: '#A6D608', textShadow: '0 0 12px #A6D60866' }}>
               Player Experiences
             </span>
-            <div className="w-8 h-px bg-[#b7ff00]" />
+            <div className="w-8 h-px bg-[#A6D608]" />
           </div>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white leading-none">
             What Our{' '}
-            <span style={{ WebkitTextStroke: '1.5px #b7ff00', color: 'transparent', filter: 'drop-shadow(0 0 12px #b7ff0055)' }}>
+            <span style={{ WebkitTextStroke: '1.5px #A6D608', color: 'transparent', filter: 'drop-shadow(0 0 12px #A6D60855)' }}>
               Players Say
             </span>
           </h2>
@@ -189,18 +189,18 @@ const Testimonials = () => {
         {/* Slider */}
         <div className="relative max-w-5xl mx-auto px-0 md:px-16">
           <motion.button onClick={prev} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }} aria-label="Previous testimonial"
-            className="testimonial-control absolute left-2 md:left-0 top-1/2 z-20 -translate-y-1/2 w-9 h-14 md:w-12 md:h-20 flex items-center justify-center bg-[#0b0b0b]/95 border border-white/10 text-white hover:text-[#b7ff00] hover:border-[#b7ff00]/50 transition-colors pointer-events-auto cursor-pointer">
+            className="testimonial-control absolute left-2 md:left-0 top-1/2 z-20 -translate-y-1/2 w-9 h-14 md:w-12 md:h-20 flex items-center justify-center bg-[#0b0b0b]/95 border border-white/10 text-white hover:text-[#A6D608] hover:border-[#A6D608]/50 transition-colors pointer-events-auto cursor-pointer">
             <ChevronLeft size={22} />
           </motion.button>
 
           <motion.button onClick={next} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }} aria-label="Next testimonial"
-            className="testimonial-control absolute right-2 md:right-0 top-1/2 z-20 -translate-y-1/2 w-9 h-14 md:w-12 md:h-20 flex items-center justify-center bg-[#0b0b0b]/95 border border-white/10 text-white hover:text-[#b7ff00] hover:border-[#b7ff00]/50 transition-colors pointer-events-auto cursor-pointer">
+            className="testimonial-control absolute right-2 md:right-0 top-1/2 z-20 -translate-y-1/2 w-9 h-14 md:w-12 md:h-20 flex items-center justify-center bg-[#0b0b0b]/95 border border-white/10 text-white hover:text-[#A6D608] hover:border-[#A6D608]/50 transition-colors pointer-events-auto cursor-pointer">
             <ChevronRight size={22} />
           </motion.button>
 
           <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[#080808] shadow-[0_30px_100px_rgba(0,0,0,0.45)]">
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#b7ff00]/70 to-transparent" />
-            <div className="absolute left-0 top-0 h-full w-1 bg-[#b7ff00]" />
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#A6D608]/70 to-transparent" />
+            <div className="absolute left-0 top-0 h-full w-1 bg-[#A6D608]" />
 
             <AnimatePresence custom={direction} mode="wait">
               <motion.div
@@ -215,7 +215,7 @@ const Testimonials = () => {
               >
                 <div className="flex flex-col justify-between border-r border-white/10 pr-5 md:pr-10">
                   <div>
-                    <p className="mb-4 text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.35em] text-[#b7ff00]">Verified Review</p>
+                    <p className="mb-4 text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.35em] text-[#A6D608]">Verified Review</p>
                     <Avatar initials={t.initials} color={t.color} />
                   </div>
                   <div className="mt-8">
@@ -226,7 +226,7 @@ const Testimonials = () => {
                     <p className="mb-4 text-xs md:text-sm text-gray-500 leading-tight">{t.location}</p>
                     <div className="flex flex-wrap gap-2">
                       <span className="inline-flex items-center gap-1 text-[8px] md:text-[10px] font-black uppercase tracking-widest px-2 py-1 md:px-2.5 rounded-full"
-                        style={{ background: 'rgba(183,255,0,0.1)', border: '1px solid rgba(183,255,0,0.25)', color: '#b7ff00' }}>
+                        style={{ background: 'rgba(166,214,8,0.1)', border: '1px solid rgba(166,214,8,0.25)', color: '#A6D608' }}>
                         <ShieldCheck size={10} /> Verified Player
                       </span>
                       <span className="inline-flex items-center text-[8px] md:text-[10px] font-black uppercase tracking-widest px-2 py-1 md:px-2.5 rounded-full"
@@ -253,9 +253,9 @@ const Testimonials = () => {
               {TESTIMONIALS.map((_, i) => (
                 <button key={i} onClick={() => goTo(i, i > active ? 1 : -1)} aria-label={`Testimonial ${i + 1}`}
                   className="testimonial-control relative overflow-hidden rounded-full transition-all duration-500 pointer-events-auto cursor-pointer"
-                  style={{ width: i === active ? 28 : 8, height: 8, background: i === active ? '#b7ff00' : 'rgba(255,255,255,0.15)', boxShadow: i === active ? '0 0 10px #b7ff0088' : 'none' }}>
+                  style={{ width: i === active ? 28 : 8, height: 8, background: i === active ? '#A6D608' : 'rgba(255,255,255,0.15)', boxShadow: i === active ? '0 0 10px #A6D60888' : 'none' }}>
                   {i === active && (
-                    <motion.div className="absolute inset-0 rounded-full" style={{ background: '#b7ff00', originX: 0 }}
+                    <motion.div className="absolute inset-0 rounded-full" style={{ background: '#A6D608', originX: 0 }}
                       initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 6, ease: 'linear' }} key={`p-${active}`} />
                   )}
                 </button>

@@ -72,10 +72,10 @@ const Stat = ({ value, suffix, label, sub, delay, isLast, index }) => {
           className="font-black transition-all duration-400"
           style={{
             fontSize: 'clamp(3.5rem, 7vw, 7rem)',
-            color: '#b7ff00',
+            color: '#A6D608',
             textShadow: hovered
-              ? '0 0 40px rgba(183,255,0,0.7), 0 0 80px rgba(183,255,0,0.3)'
-              : '0 0 20px rgba(183,255,0,0.35)',
+              ? '0 0 40px rgba(166,214,8,0.7), 0 0 80px rgba(166,214,8,0.3)'
+              : '0 0 20px rgba(166,214,8,0.35)',
             letterSpacing: '-0.03em',
           }}
         >
@@ -85,10 +85,10 @@ const Stat = ({ value, suffix, label, sub, delay, isLast, index }) => {
           className="font-black pb-2 transition-all duration-400"
           style={{
             fontSize: 'clamp(2rem, 4vw, 4rem)',
-            color: '#b7ff00',
+            color: '#A6D608',
             textShadow: hovered
-              ? '0 0 30px rgba(183,255,0,0.7)'
-              : '0 0 14px rgba(183,255,0,0.35)',
+              ? '0 0 30px rgba(166,214,8,0.7)'
+              : '0 0 14px rgba(166,214,8,0.35)',
           }}
         >
           {suffix}
@@ -122,8 +122,8 @@ const Stat = ({ value, suffix, label, sub, delay, isLast, index }) => {
           <div
             className="w-full h-full"
             style={{
-              background: 'linear-gradient(180deg, transparent 0%, rgba(183,255,0,0.3) 30%, rgba(183,255,0,0.3) 70%, transparent 100%)',
-              boxShadow: '0 0 8px rgba(183,255,0,0.15)',
+              background: 'linear-gradient(180deg, transparent 0%, rgba(166,214,8,0.3) 30%, rgba(166,214,8,0.3) 70%, transparent 100%)',
+              boxShadow: '0 0 8px rgba(166,214,8,0.15)',
             }}
           />
         </motion.div>
@@ -135,8 +135,8 @@ const Stat = ({ value, suffix, label, sub, delay, isLast, index }) => {
         style={{
           width: hovered ? 120 : 0,
           height: 1,
-          background: '#b7ff00',
-          boxShadow: hovered ? '0 0 20px 4px rgba(183,255,0,0.4)' : 'none',
+          background: '#A6D608',
+          boxShadow: hovered ? '0 0 20px 4px rgba(166,214,8,0.4)' : 'none',
           opacity: hovered ? 1 : 0,
         }}
       />
@@ -167,7 +167,7 @@ const StatsSection = () => {
         <div
           className="absolute inset-0"
           style={{
-            background: 'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(183,255,0,0.03) 0%, transparent 70%)',
+            background: 'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(166,214,8,0.03) 0%, transparent 70%)',
           }}
         />
       </motion.div>
@@ -178,7 +178,7 @@ const StatsSection = () => {
         <div ref={lineRef} className="relative mb-12 overflow-hidden h-px">
           <motion.div
             className="absolute inset-0"
-            style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(183,255,0,0.5) 20%, rgba(183,255,0,0.5) 80%, transparent 100%)', boxShadow: '0 0 12px rgba(183,255,0,0.25)' }}
+            style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(166,214,8,0.5) 20%, rgba(166,214,8,0.5) 80%, transparent 100%)', boxShadow: '0 0 12px rgba(166,214,8,0.25)' }}
             initial={{ scaleX: 0, originX: 0 }}
             animate={lineInView ? { scaleX: 1 } : {}}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
@@ -194,11 +194,11 @@ const StatsSection = () => {
         >
           <span
             className="text-[10px] font-black uppercase tracking-[0.4em]"
-            style={{ color: '#b7ff00', textShadow: '0 0 10px rgba(183,255,0,0.4)' }}
+            style={{ color: '#A6D608', textShadow: '0 0 10px rgba(166,214,8,0.4)' }}
           >
             By The Numbers
           </span>
-          <div className="flex-1 h-px" style={{ background: 'rgba(183,255,0,0.1)' }} />
+          <div className="flex-1 h-px" style={{ background: 'rgba(166,214,8,0.1)' }} />
           <span className="text-[10px] font-bold uppercase tracking-widest text-gray-700">
             Lion Elite Padel Academy · Dubai UAE
           </span>
@@ -229,7 +229,7 @@ const StatsSection = () => {
             >
               <span
                 className="font-black leading-none tabular-nums"
-                style={{ fontSize: '3.5rem', color: '#b7ff00', textShadow: '0 0 20px rgba(183,255,0,0.4)', letterSpacing: '-0.03em' }}
+                style={{ fontSize: '3.5rem', color: '#A6D608', textShadow: '0 0 20px rgba(166,214,8,0.4)', letterSpacing: '-0.03em' }}
               >
                 {s.value}{s.suffix}
               </span>
@@ -243,7 +243,7 @@ const StatsSection = () => {
         <div className="relative mt-8 overflow-hidden h-px">
           <motion.div
             className="absolute inset-0"
-            style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(183,255,0,0.5) 20%, rgba(183,255,0,0.5) 80%, transparent 100%)', boxShadow: '0 0 12px rgba(183,255,0,0.25)' }}
+            style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(166,214,8,0.5) 20%, rgba(166,214,8,0.5) 80%, transparent 100%)', boxShadow: '0 0 12px rgba(166,214,8,0.25)' }}
             initial={{ scaleX: 0, originX: 1 }}
             animate={lineInView ? { scaleX: 1 } : {}}
             transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
@@ -264,9 +264,9 @@ const StatsSection = () => {
             {Array.from({ length: 2 }).flatMap(() =>
               ['Padel Academy Dubai', 'Professional Coaching', 'Premium Courts UAE', 'Junior Academy', 'Private Lessons', 'Group Training', 'Tournaments Dubai', '🏆 Lion Elite', 'Indoor Padel UAE', 'Elite Coaching'].map((item, i) => (
                 <span key={`${item}-${i}`} className="text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-6"
-                  style={{ color: 'rgba(183,255,0,0.25)' }}>
+                  style={{ color: 'rgba(166,214,8,0.25)' }}>
                   {item}
-                  <span style={{ color: 'rgba(183,255,0,0.1)', fontSize: '6px' }}>◆</span>
+                  <span style={{ color: 'rgba(166,214,8,0.1)', fontSize: '6px' }}>◆</span>
                 </span>
               ))
             )}

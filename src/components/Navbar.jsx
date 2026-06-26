@@ -54,12 +54,12 @@ const Navbar = () => {
                 {location.pathname === link.path && (
                   <motion.div 
                     layoutId="navbar-indicator"
-                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#ccff00]"
+                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#A6D608]"
                     initial={false}
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
                 )}
-                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#ccff00] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out opacity-50"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#A6D608] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out opacity-50"></div>
               </Link>
             ))}
           </div>
@@ -68,7 +68,7 @@ const Navbar = () => {
           <div className="hidden md:block">
             <Link
               to="/contact"
-              className="relative inline-flex items-center justify-center px-8 py-3 text-sm font-bold tracking-widest uppercase text-black bg-[#ccff00] rounded-full overflow-hidden group pulse-glow-btn"
+              className="relative inline-flex items-center justify-center px-8 py-3 text-sm font-bold tracking-widest uppercase text-black bg-[#A6D608] rounded-full overflow-hidden group pulse-glow-btn"
             >
               <span className="absolute inset-0 w-full h-full bg-white opacity-0 group-hover:opacity-20 transition-opacity"></span>
               <span className="relative z-10 flex items-center gap-2">Book Now</span>
@@ -122,7 +122,7 @@ const Navbar = () => {
               <Link
                 to="/contact"
                 onClick={() => setIsOpen(false)}
-                className="bg-[#ccff00] text-black px-10 py-4 rounded-full font-bold text-lg uppercase tracking-widest pulse-glow-btn"
+                className="bg-[#A6D608] text-black px-10 py-4 rounded-full font-bold text-lg uppercase tracking-widest pulse-glow-btn"
               >
                 Book a Session
               </Link>

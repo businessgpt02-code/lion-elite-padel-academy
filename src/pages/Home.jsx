@@ -39,7 +39,7 @@ const Home = () => {
         >
           <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-black/50 z-10 mix-blend-multiply"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-[#030303]/80 via-transparent to-[#030303] z-10"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(204,255,0,0.1)_0%,transparent_50%)] z-10"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(166,214,8,0.1)_0%,transparent_50%)] z-10"></div>
           <img 
             src="/hero.png" 
             alt="Professional padel tennis training session at Lion Elite Padel Academy Middle East" 
@@ -55,25 +55,25 @@ const Home = () => {
             className="max-w-5xl"
           >
             <div className="flex items-center gap-4 mb-6 mt-8">
-              <div className="w-12 h-[1px] bg-[#ccff00]"></div>
-              <span className="uppercase tracking-[0.3em] text-[#ccff00] text-sm font-bold">#1 Professional Padel Academy in Dubai &amp; UAE</span>
+              <div className="w-12 h-[1px] bg-[#A6D608]"></div>
+              <span className="uppercase tracking-[0.3em] text-[#A6D608] text-sm font-bold">#1 Professional Padel Academy in Dubai &amp; UAE</span>
             </div>
             
             <h1 className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.85] tracking-tighter uppercase">
               <span className="sr-only">Lion Elite Padel Academy — Professional Padel Coaching &amp; Premium Courts in Dubai &amp; UAE</span>
-              <span className="block text-white">Elite Padel</span>
-              <span className="block text-white">Dubai &amp; UAE</span>
+              <span className="block text-white">Train Like a Lion.</span>
+              <span className="block pl-2 md:pl-4 text-[#A6D608]">Play Like Elite.</span>
             </h1>
 
             <div className="flex flex-col items-start gap-6 mt-8 pl-2">
               <p className="text-gray-400 max-w-sm text-base font-light leading-relaxed">
-                Professional padel coaching, private training, junior development programs, and premium indoor courts across the UAE. Whether you're a beginner or a competitive player, our certified coaches help you dominate the game.
+                Lion Elite Padel Academy Middle East is where passion meets performance. Unlock your potential with world-class coaching, premium facilities, and a community that pushes you to be your best.
               </p>
               
               <Link 
                 to="/contact" 
                 aria-label="Book your first padel session at Lion Elite Padel Academy Dubai"
-                className="relative inline-flex items-center justify-center px-10 py-5 font-bold tracking-widest uppercase text-black bg-[#ccff00] overflow-hidden group"
+                className="relative inline-flex items-center justify-center px-10 py-5 font-bold tracking-widest uppercase text-black bg-[#A6D608] overflow-hidden group"
               >
                 <span className="absolute inset-0 w-full h-full bg-white opacity-0 group-hover:opacity-20 transition-opacity"></span>
                 <span className="relative z-10 flex items-center gap-3">
@@ -111,7 +111,7 @@ const Home = () => {
         
         <div className="container mx-auto px-6 relative z-10 text-center">
           <FadeUp>
-            <p className="text-xs md:text-sm font-black uppercase tracking-[0.35em] text-[#ccff00] mb-3">
+            <p className="text-xs md:text-sm font-black uppercase tracking-[0.35em] text-[#A6D608] mb-3">
               READY TO PLAY?
             </p>
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-[0.9] mb-5">
@@ -121,12 +121,12 @@ const Home = () => {
               Take your game to the next level with professional padel coaching, premium indoor courts, private lessons, junior academy programs, and competitive training designed for players of every skill level across Dubai and the UAE.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link to="/contact" className="inline-flex items-center justify-center px-10 py-5 font-black tracking-[0.18em] uppercase text-black bg-white hover:bg-[#ccff00] transition-all duration-500 overflow-hidden group rounded-none">
+              <Link to="/contact" className="inline-flex items-center justify-center px-10 py-5 font-black tracking-[0.18em] uppercase text-black bg-white hover:bg-[#A6D608] transition-all duration-500 overflow-hidden group rounded-none">
                 <span className="relative z-10 flex items-center gap-4 text-sm md:text-base">
                   Book Your Padel Session <ArrowRight size={22} className="group-hover:translate-x-3 transition-transform duration-300" />
                 </span>
               </Link>
-              <Link to="/courts" className="inline-flex items-center justify-center px-10 py-5 font-black tracking-[0.18em] uppercase text-black bg-white hover:bg-[#ccff00] transition-all duration-500 overflow-hidden group rounded-none">
+              <Link to="/courts" className="inline-flex items-center justify-center px-10 py-5 font-black tracking-[0.18em] uppercase text-black bg-white hover:bg-[#A6D608] transition-all duration-500 overflow-hidden group rounded-none">
                 <span className="relative z-10 flex items-center gap-4 text-sm md:text-base">
                   Explore Our Coaching Programs <ArrowRight size={22} className="group-hover:translate-x-3 transition-transform duration-300" />
                 </span>
