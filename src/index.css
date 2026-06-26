@@ -9,6 +9,13 @@
   --font-sans: "Outfit", "Inter", sans-serif;
 }
 
+html,
+body,
+#root {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   background-color: var(--color-background);
   color: #ffffff;
@@ -159,4 +166,9 @@ a,
 button {
   pointer-events: none;
   cursor: default;
+}
+
+.testimonial-control {
+  pointer-events: auto !important;
+  cursor: pointer !important;
 }

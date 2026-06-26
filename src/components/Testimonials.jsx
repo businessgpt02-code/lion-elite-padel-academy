@@ -187,15 +187,15 @@ const Testimonials = () => {
         </motion.div>
 
         {/* Slider */}
-        <div className="relative max-w-5xl mx-auto px-12 md:px-16">
+        <div className="relative max-w-5xl mx-auto px-0 md:px-16">
           <motion.button onClick={prev} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }} aria-label="Previous testimonial"
-            className="absolute left-0 top-1/2 z-20 -translate-y-1/2 w-11 h-16 md:w-12 md:h-20 flex items-center justify-center bg-[#0b0b0b]/95 border border-white/10 text-white hover:text-[#b7ff00] hover:border-[#b7ff00]/50 transition-colors">
-            <ChevronLeft size={24} />
+            className="testimonial-control absolute left-2 md:left-0 top-1/2 z-20 -translate-y-1/2 w-9 h-14 md:w-12 md:h-20 flex items-center justify-center bg-[#0b0b0b]/95 border border-white/10 text-white hover:text-[#b7ff00] hover:border-[#b7ff00]/50 transition-colors pointer-events-auto cursor-pointer">
+            <ChevronLeft size={22} />
           </motion.button>
 
           <motion.button onClick={next} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }} aria-label="Next testimonial"
-            className="absolute right-0 top-1/2 z-20 -translate-y-1/2 w-11 h-16 md:w-12 md:h-20 flex items-center justify-center bg-[#0b0b0b]/95 border border-white/10 text-white hover:text-[#b7ff00] hover:border-[#b7ff00]/50 transition-colors">
-            <ChevronRight size={24} />
+            className="testimonial-control absolute right-2 md:right-0 top-1/2 z-20 -translate-y-1/2 w-9 h-14 md:w-12 md:h-20 flex items-center justify-center bg-[#0b0b0b]/95 border border-white/10 text-white hover:text-[#b7ff00] hover:border-[#b7ff00]/50 transition-colors pointer-events-auto cursor-pointer">
+            <ChevronRight size={22} />
           </motion.button>
 
           <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[#080808] shadow-[0_30px_100px_rgba(0,0,0,0.45)]">
@@ -211,25 +211,25 @@ const Testimonials = () => {
                 animate="center"
                 exit="exit"
                 transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                className="relative z-10 grid grid-cols-[0.8fr_1.4fr] gap-6 px-5 py-8 md:gap-10 md:px-14 md:py-14"
+                className="relative z-10 grid grid-cols-[0.78fr_1.22fr] gap-4 px-10 py-8 md:grid-cols-[0.8fr_1.4fr] md:gap-10 md:px-14 md:py-14"
               >
                 <div className="flex flex-col justify-between border-r border-white/10 pr-5 md:pr-10">
                   <div>
-                    <p className="mb-5 text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] md:tracking-[0.35em] text-[#b7ff00]">Verified Review</p>
+                    <p className="mb-4 text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.35em] text-[#b7ff00]">Verified Review</p>
                     <Avatar initials={t.initials} color={t.color} />
                   </div>
                   <div className="mt-8">
                     <div className="mb-2 flex items-center gap-2">
-                      <span className="text-sm md:text-xl font-black text-white">{t.name}</span>
+                      <span className="text-base md:text-xl font-black text-white">{t.name}</span>
                       <span className="text-base md:text-xl">{t.flag}</span>
                     </div>
-                    <p className="mb-4 text-xs md:text-sm text-gray-500">{t.location}</p>
+                    <p className="mb-4 text-xs md:text-sm text-gray-500 leading-tight">{t.location}</p>
                     <div className="flex flex-wrap gap-2">
-                      <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full"
+                      <span className="inline-flex items-center gap-1 text-[8px] md:text-[10px] font-black uppercase tracking-widest px-2 py-1 md:px-2.5 rounded-full"
                         style={{ background: 'rgba(183,255,0,0.1)', border: '1px solid rgba(183,255,0,0.25)', color: '#b7ff00' }}>
                         <ShieldCheck size={10} /> Verified Player
                       </span>
-                      <span className="inline-flex items-center text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full"
+                      <span className="inline-flex items-center text-[8px] md:text-[10px] font-black uppercase tracking-widest px-2 py-1 md:px-2.5 rounded-full"
                         style={{ background: levelStyle.bg, border: `1px solid ${levelStyle.border}44`, color: levelStyle.text }}>
                         {t.level}
                       </span>
@@ -240,7 +240,7 @@ const Testimonials = () => {
                 <div>
                   <StarRating delay={0.1} />
                   <blockquote>
-                    <p className="text-lg font-light leading-tight text-white md:text-3xl lg:text-4xl">
+                    <p className="text-xl font-light leading-tight text-white md:text-3xl lg:text-4xl">
                       "{t.quote}"
                     </p>
                   </blockquote>
@@ -252,7 +252,7 @@ const Testimonials = () => {
           <div className="mt-7 flex items-center justify-center gap-2">
               {TESTIMONIALS.map((_, i) => (
                 <button key={i} onClick={() => goTo(i, i > active ? 1 : -1)} aria-label={`Testimonial ${i + 1}`}
-                  className="relative overflow-hidden rounded-full transition-all duration-500"
+                  className="testimonial-control relative overflow-hidden rounded-full transition-all duration-500 pointer-events-auto cursor-pointer"
                   style={{ width: i === active ? 28 : 8, height: 8, background: i === active ? '#b7ff00' : 'rgba(255,255,255,0.15)', boxShadow: i === active ? '0 0 10px #b7ff0088' : 'none' }}>
                   {i === active && (
                     <motion.div className="absolute inset-0 rounded-full" style={{ background: '#b7ff00', originX: 0 }}
